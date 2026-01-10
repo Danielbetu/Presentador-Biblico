@@ -1,0 +1,18 @@
+id: com.betu.VersiculoDiario
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+command: App.sh
+modules:
+  - name: versiculo-diario
+    buildsystem: simple
+    build-commands:
+      - install -D App.sh /app/bin/App.sh
+      - install -D Mostrar_versiculo.py /app/bin/Mostrar_versiculo.py
+      - install -D Versiculos_biblicos_favoritos.txt /app/bin/Versiculos_biblicos_favoritos.txt
+      - install -D com.betu.VersiculoDiario.png /app/share/icons/hicolor/64x64/apps/com.betu.VersiculoDiario.png
+      - install -D com.betu.VersiculoDiario.metainfo.xml /app/share/metainfo/com.betu.VersiculoDiario.metainfo.xml
+    sources:
+      - type: git
+        url: https://github.com/Danielbetu/Presentador-Biblico.git
+        branch: main
