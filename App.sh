@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Este script se usa para ejecutar el programa Python de forma segura.
+# Navega al directorio donde están los archivos del programa en el entorno Flatpak
+cd /app/bin/
 
-# Navega al directorio del script (importante dentro de un Flatpak).
-cd "$(dirname "$0")"
-
-# Ejecuta el script de Python
-/usr/bin/python3 Mostrar_versiculo.py
+# Ejecuta el script de Python usando el intérprete del entorno seguro
+python3 Mostrar_versiculo.py
