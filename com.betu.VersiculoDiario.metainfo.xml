@@ -4,23 +4,18 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
   <name>Presentador Bíblico</name>
-  <summary>Muestra versículos bíblicos aleatorios al iniciar el sistema / Shows random Bible verses at startup</summary>
+  <summary>Muestra versículos bíblicos aleatorios al iniciar el sistema</summary>
   <description>
     <p>
       Una aplicación ligera y elegante diseñada para inspirar al usuario con la Palabra de Dios. 
       Al ejecutarse, selecciona un versículo al azar de una base de datos personalizada y lo 
       muestra en una ventana minimalista.
     </p>
-    <p>
-      A lightweight and elegant application designed to inspire the user with the Word of God. 
-      When executed, it selects a random verse from a personalized database and displays it 
-      in a minimalist window.
-    </p>
   </description>
   <launchable type="desktop-id">com.betu.VersiculoDiario.desktop</launchable>
   <screenshots>
     <screenshot type="default">
-      <caption>Interfaz principal mostrando un versículo / Main interface showing a verse</caption>
+      <caption>Interfaz principal mostrando un versículo</caption>
       <image>https://raw.githubusercontent.com/Danielbetu/Presentador-Biblico/main/com.betu.VersiculoDiario.png</image>
     </screenshot>
   </screenshots>
