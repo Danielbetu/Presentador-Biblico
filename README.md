@@ -1,26 +1,25 @@
-# Presentador Bíblico Profesional
+# Presentador Bíblico / Bible Presenter 🕊️
 
-Este es un software desarrollado en **Python** diseñado para la visualización de versículos bíblicos de manera automatizada y estética.
+[Español]
+Software desarrollado en Python para la visualización automatizada y estética de versículos bíblicos en entornos Linux. Utiliza Zenity para mostrar ventanas emergentes con un diseño limpio.
 
-## Archivos del Proyecto
-* **Mostrar_versiculo.py**: Script principal que gestiona la lógica y la interfaz.
-* **Versiculos_biblicos_favoritos.txt**: Base de datos de versículos personalizada.
-* **App.sh**: Script de ejecución rápida para entornos **Linux**.
-* **com.betu.VersiculoDiario.png**: Icono oficial de la aplicación.
+[English]
+Python-based software designed for the automated and aesthetic display of Bible verses on Linux environments. It uses Zenity to trigger clean, minimalist pop-up notifications.
 
-## Requisitos
-* **Python 3.x** (Librerías estándar: os, random, time, subprocess).
-* **Zenity**: Necesario para desplegar la ventana visual en Linux.
+## Características / Features
+* Selección aleatoria de versículos / Random verse selection.
+* Interfaz nativa de Linux (Zenity) / Native Linux interface.
+* Ligero y eficiente / Lightweight and efficient.
 
-## Integridad del Contenido
-Este proyecto incluye una cláusula de protección. El autor no autoriza la 
-adulteración de los textos bíblicos incluidos en la base de datos para 
-preservar la fidelidad del mensaje.
+## Requisitos / Requirements
+* Python 3.x
+* Zenity
 
-## Instalación y Uso
-1. Clonar el repositorio.
-2. Asegurarse de que el archivo `App.sh` tenga permisos de ejecución:
-   `chmod +x App.sh`
-3. Ejecutar `./App.sh` o `python3 Mostrar_versiculo.py`.
+## Instalación / Installation
+1. Clonar el repositorio / Clone the repository.
+2. Dar permisos / Grant permissions: `chmod +x App.sh`
+3. Ejecutar / Run: `./App.sh`
 
-Desarrollado por Daniel.
+## Integridad / Integrity
+[Español] Queda prohibida la alteración de los textos bíblicos en la base de datos.
+[English] Modification of the biblical texts in the database is strictly prohibited.
