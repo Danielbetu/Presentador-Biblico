@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Versículo Diario Personal
-Comment=Muestra un versículo bíblico favorito y personalizado al iniciar la sesión.
-Exec=/usr/bin/python3 /home/betu/Mostrar_versiculo.py
+Name=Presentador Bíblico
+Comment=Muestra un versículo bíblico al iniciar la sesión.
+Exec=App.sh
 Icon=com.betu.VersiculoDiario
 Terminal=false
 Type=Application
