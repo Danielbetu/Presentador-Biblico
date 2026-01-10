@@ -1,0 +1,16 @@
+MIT License + Content Integrity Clause
+
+Copyright (c) 2026 Daniel
+
+Se concede permiso para utilizar y distribuir este software, sujeto a:
+
+1. El software se proporciona "tal cual", sin garantías de ningún tipo.
+2. PROHIBICIÓN DE ALTERACIÓN DE CONTENIDO: Queda terminantemente prohibido 
+   modificar, adulterar o alterar el archivo "Versiculos_biblicos_favoritos.txt" 
+   con el fin de difundir versiones del texto bíblico que no correspondan a 
+   fuentes teológicas reconocidas. 
+3. El autor original no se hace responsable del uso indebido o de modificaciones 
+   realizadas por terceros que alteren el mensaje original de los textos.
+
+Esta cláusula sirve como salvoconducto legal para el autor original ante 
+cualquier manipulación de terceros.
