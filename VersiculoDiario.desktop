@@ -1,9 +1,8 @@
 [Desktop Entry]
 Name=Presentador Bíblico
-Comment=Muestra un versículo bíblico al iniciar la sesión.
+Comment=Visualización de versículos bíblicos
 Exec=App.sh
 Icon=com.betu.VersiculoDiario
 Terminal=false
 Type=Application
 Categories=Utility;Education;
-X-GNOME-Autostart-enabled=true
