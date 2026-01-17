@@ -1,6 +1,6 @@
 id: com.betu.VersiculoDiario
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: App.sh
 modules:
@@ -12,6 +12,7 @@ modules:
       - install -D Versiculos_biblicos_favoritos.txt /app/bin/Versiculos_biblicos_favoritos.txt
       - install -D com.betu.VersiculoDiario.png /app/share/icons/hicolor/64x64/apps/com.betu.VersiculoDiario.png
       - install -D com.betu.VersiculoDiario.metainfo.xml /app/share/metainfo/com.betu.VersiculoDiario.metainfo.xml
+      - install -D VersiculoDiario.desktop /app/share/applications/com.betu.VersiculoDiario.desktop
     sources:
       - type: git
         url: https://github.com/Danielbetu/Presentador-Biblico.git
