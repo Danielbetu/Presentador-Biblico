@@ -2,24 +2,35 @@
 <component type="desktop-application">
   <id>com.betu.VersiculoDiario</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>MIT</project_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <name>Presentador Bíblico</name>
-  <summary>Muestra versículos bíblicos aleatorios al iniciar el sistema</summary>
+  <summary>Muestra un versículo bíblico diferente en cada inicio de sesión</summary>
+
   <description>
     <p>
-      Una aplicación ligera y elegante diseñada para inspirar al usuario con la Palabra de Dios. 
-      Al ejecutarse, selecciona un versículo al azar de una base de datos personalizada y lo 
-      muestra en una ventana minimalista.
+      El Presentador Bíblico es una herramienta sencilla diseñada para inspirar tu día.
+      Al iniciar sesión en tu escritorio, aparecerá una ventana elegante mostrando
+      un versículo de las Sagradas Escrituras seleccionado especialmente de tu lista de favoritos.
     </p>
   </description>
+
   <launchable type="desktop-id">com.betu.VersiculoDiario.desktop</launchable>
+
   <screenshots>
     <screenshot type="default">
       <caption>Interfaz principal mostrando un versículo</caption>
-      <image>https://raw.githubusercontent.com/Danielbetu/Presentador-Biblico/main/com.betu.VersiculoDiario.png</image>
+      <image type="source" width="800" height="450">https://raw.githubusercontent.com/Danielbetu/Presentador-Biblico/main/captura.png</image>
     </screenshot>
   </screenshots>
+
+  <releases>
+    <release version="1.0.0" date="2026-01-18" />
+  </releases>
+
+  <content_rating type="oars-1.1" />
+
   <url type="homepage">https://github.com/Danielbetu/Presentador-Biblico</url>
+  
   <provides>
     <binary>App.sh</binary>
   </provides>
