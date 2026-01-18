@@ -3,6 +3,11 @@ runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: App.sh
+finish-args:
+  - --socket=x11
+  - --socket=wayland
+  - --device=dri
+  - --share=ipc
 modules:
   - name: versiculo-diario
     buildsystem: simple
