@@ -27,8 +27,10 @@
   </description>
 
   <launchable type="desktop-id">org.presentador.biblico.desktop</launchable>
-  <url type="homepage">https://github.com/danielbetu/Presentador_Biblico</url>
-  <developer_name>Betu</developer_name>
+  <url type="homepage">https://github.com/Danielbetu/Presentador-Biblico</url>
+  <developer id="com.github.Danielbetu">
+    <name>Danielbetu</name>
+  </developer>
 
   <categories>
     <category>Education</category>
@@ -48,19 +50,19 @@
   <screenshots>
     <screenshot type="default">
       <caption>Daily verse with waterfall landscape</caption>
-      <image type="source">https://raw.githubusercontent.com/danielbetu/Presentador_Biblico/main/assets/screenshot-waterfall.png</image>
+      <image type="source">https://raw.githubusercontent.com/Danielbetu/Presentador-Biblico/main/assets/screenshot-waterfall.png</image>
     </screenshot>
     <screenshot>
       <caption>Daily verse with lake and flowers landscape</caption>
-      <image type="source">https://raw.githubusercontent.com/danielbetu/Presentador_Biblico/main/assets/screenshot-lake-flowers.png</image>
+      <image type="source">https://raw.githubusercontent.com/Danielbetu/Presentador-Biblico/main/assets/screenshot-lake-flowers.png</image>
     </screenshot>
     <screenshot>
       <caption>Daily verse with beach landscape</caption>
-      <image type="source">https://raw.githubusercontent.com/danielbetu/Presentador_Biblico/main/assets/screenshot-beach.png</image>
+      <image type="source">https://raw.githubusercontent.com/Danielbetu/Presentador-Biblico/main/assets/screenshot-beach.png</image>
     </screenshot>
     <screenshot>
       <caption>Daily verse with forest landscape</caption>
-      <image type="source">https://raw.githubusercontent.com/danielbetu/Presentador_Biblico/main/assets/screenshot-forest.png</image>
+      <image type="source">https://raw.githubusercontent.com/Danielbetu/Presentador-Biblico/main/assets/screenshot-forest.png</image>
     </screenshot>
   </screenshots>
 </component>
