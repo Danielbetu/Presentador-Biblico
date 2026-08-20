@@ -5,5 +5,5 @@ Exec=presentador-biblico
 Icon=org.presentador.biblico
 Terminal=false
 Type=Application
-Categories=Education;Utility;
+Categories=Utility;
 Keywords=Bible;Biblia;Verse;Versiculo;
