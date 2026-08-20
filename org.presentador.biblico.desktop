@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Presentador Bíblico
+Comment=Tu versículo diario y Biblia completa
+Exec=presentador-biblico
+Icon=org.presentador.biblico
+Terminal=false
+Type=Application
+Categories=Education;Utility;
+Keywords=Bible;Biblia;Verse;Versiculo;

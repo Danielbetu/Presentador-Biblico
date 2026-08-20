@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.presentador.biblico</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Presentador Bíblico</name>
+
+  <summary>Acompañante diario con versículos en alta resolución y Biblia completa</summary>
+  <summary xml:lang="en">Daily companion with high-resolution verses and full Bible</summary>
+  <summary xml:lang="fr">Compagnon quotidien avec versets en haute résolution et Bible complète</summary>
+  <summary xml:lang="it">Compagno quotidiano con versetti ad alta risoluzione e Bibbia completa</summary>
+  <summary xml:lang="pt">Companheiro diário com versículos em alta resolução e Bíblia completa</summary>
+
+  <description>
+    <p>
+      Presentador Bíblico V2 es una herramienta multimedia diseñada para inspirar cada día con pasajes bíblicos combinados con paisajes en alta resolución, audio de fondo y un lector completo.
+    </p>
+    <p xml:lang="en">
+      Biblical Presenter V2 is a multimedia tool designed to inspire every day with biblical passages combined with high-resolution landscapes, background audio, and a full reader.
+    </p>
+    <ul>
+      <li>Soporte nativo para 5 idiomas (Español, Inglés, Francés, Italiano, Portugués).</li>
+      <li>Buscador inteligente de versículos y capítulos.</li>
+      <li>Galería de fondos en alta definición reescalados dinámicamente.</li>
+      <li>Reproductor de audio integrado para lectura ambiental.</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">org.presentador.biblico.desktop</launchable>
+  <url type="homepage">https://github.com/danielbetu/Presentador_Biblico</url>
+  <developer_name>Betu</developer_name>
+
+  <categories>
+    <category>Education</category>
+    <category>Utility</category>
+  </categories>
+
+  <content_rating type="oars-1.1" />
+
+  <releases>
+    <release version="2.0.0" date="2026-07-25">
+      <description>
+        <p>Lanzamiento de la versión 2.0 con soporte multilenguaje y motor de paisajes optimizado.</p>
+      </description>
+    </release>
+  </releases>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Daily verse with waterfall landscape</caption>
+      <image type="source">https://raw.githubusercontent.com/danielbetu/Presentador_Biblico/main/assets/screenshot-waterfall.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Daily verse with lake and flowers landscape</caption>
+      <image type="source">https://raw.githubusercontent.com/danielbetu/Presentador_Biblico/main/assets/screenshot-lake-flowers.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Daily verse with beach landscape</caption>
+      <image type="source">https://raw.githubusercontent.com/danielbetu/Presentador_Biblico/main/assets/screenshot-beach.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Daily verse with forest landscape</caption>
+      <image type="source">https://raw.githubusercontent.com/danielbetu/Presentador_Biblico/main/assets/screenshot-forest.png</image>
+    </screenshot>
+  </screenshots>
+</component>

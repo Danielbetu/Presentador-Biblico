@@ -1,0 +1,43 @@
+id: org.presentador.biblico
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+command: presentador-biblico
+
+finish-args:
+  - --socket=x11
+  - --socket=wayland
+  - --device=dri
+  - --socket=pulseaudio
+  - --share=network
+  - --filesystem=host
+
+modules:
+  - name: python3-pillow
+    buildsystem: simple
+    sources:
+      - type: file
+        path: pillow-12.2.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+    build-commands:
+      - pip3 install --no-index --find-links=. --prefix=/app pillow-12.2.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+
+  - name: presentador-biblico
+    buildsystem: simple
+    sources:
+      - type: dir
+        path: .
+    build-commands:
+      - mkdir -p /app/bin
+      - mkdir -p /app/share/presentador-biblico
+      - mkdir -p /app/share/fonts
+      - mkdir -p /app/share/icons/hicolor/512x512/apps
+      - mkdir -p /app/share/applications
+      - cp -r bin modulos data assets /app/share/presentador-biblico/
+      - cp assets/*.ttf /app/share/fonts/
+      - echo '#!/bin/sh' > /app/bin/presentador-biblico
+      - echo 'export FONTCONFIG_PATH=/etc/fonts' >> /app/bin/presentador-biblico
+      - echo 'export XDG_DATA_DIRS=/app/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}' >> /app/bin/presentador-biblico
+      - echo 'cd /app/share/presentador-biblico && exec python3 bin/PresentadorBiblicoV2.py "$@"' >> /app/bin/presentador-biblico
+      - chmod +x /app/bin/presentador-biblico
+      - install -Dm644 assets/org.presentador.biblico.png /app/share/icons/hicolor/512x512/apps/org.presentador.biblico.png
+      - install -Dm644 org.presentador.biblico.desktop /app/share/applications/org.presentador.biblico.desktop

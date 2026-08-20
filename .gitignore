@@ -1,0 +1,8 @@
+cat << 'EOF' > .gitignore
+.flatpak-builder/
+__pycache__/
+*.pyc
+*.whl
+*.flatpak
+media/exportadas/
+EOF
