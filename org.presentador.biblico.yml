@@ -28,7 +28,7 @@ modules:
       - type: git
         url: https://github.com/Danielbetu/Presentador-Biblico.git
         tag: v2.0.0
-        commit: 355d815fa82a7cf46e027c6299570605019441ea
+        commit: abe1ce2157c0c9193ca6e0ad9363352bb5e9a1fc
     build-commands:
       - mkdir -p /app/bin
       - mkdir -p /app/share/presentador-biblico
