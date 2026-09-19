@@ -5,14 +5,15 @@ import random
 import json
 import subprocess
 import tkinter as tk
+from tkinter import font
 
 # Asegurar que Python encuentre la carpeta de módulos sin importar dónde estés parado
 Directorio_Raiz = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if Directorio_Raiz not in sys.path:
     sys.path.insert(0, Directorio_Raiz)
 
-# Ruta a la fuente Lora Regular
-ruta_fuente_lora = os.path.join(Directorio_Raiz, "assets", "Lora-VariableFont_wght.ttf")
+# Ruta a la fuente Merriweather Bold
+ruta_fuente_merriweather = os.path.join(Directorio_Raiz, "assets", "fonts", "Merriweather_24pt-Bold.ttf")
 
 # Ahora importamos el módulo del atrapador
 from modulos.atrapador import activar_atrapador
@@ -271,8 +272,52 @@ class PresentadorBiblico:
             
             ancho_texto_relativo = int(self.ancho_pantalla * 0.85)
             
-            self.canvas.create_text(centro_x, centro_y - 20, text=self.texto_versiculo_actual, fill="white", font=("Ubuntu", 20, "italic"), width=ancho_texto_relativo, justify="center")
-            self.canvas.create_text(centro_x, self.alto_pantalla - 160, text=f"— {cita_limpia.upper()}", fill="#ffffff", font=("Ubuntu", 14, "bold"))
+            # --- TAMAÑO DINÁMICO Y POSICIÓN SEGÚN EL LARGO DEL VERSÍCULO ---
+            largo_texto = len(self.texto_versiculo_actual)
+            
+            if largo_texto > 220:
+                tamano_fuente = 18
+                offset_y = 60
+            elif largo_texto > 140:
+                tamano_fuente = 21
+                offset_y = 40
+            else:
+                tamano_fuente = 26
+                offset_y = 20
+
+            # Cargar la fuente Merriweather con el tamaño adaptado
+            fuente_principal = font.Font(family="Merriweather", size=tamano_fuente, weight="bold")
+            fuente_cita = font.Font(family="Merriweather", size=14, weight="bold")
+            
+            pos_y_versiculo = centro_y - offset_y
+            
+            # CAPA 1: SOMBRA NEGRA (Sombra desplazada 2px)
+            self.canvas.create_text(
+                centro_x + 2, pos_y_versiculo + 2, 
+                text=self.texto_versiculo_actual, 
+                fill="#000000", 
+                font=fuente_principal, 
+                width=ancho_texto_relativo, 
+                justify="center"
+            )
+            
+            # CAPA 2: TEXTO PRINCIPAL BLANCO
+            self.canvas.create_text(
+                centro_x, pos_y_versiculo, 
+                text=self.texto_versiculo_actual, 
+                fill="#FFFFFF", 
+                font=fuente_principal, 
+                width=ancho_texto_relativo, 
+                justify="center"
+            )
+            
+            # Cita bibliográfica (mantiene su lugar sin ser pisada)
+            self.canvas.create_text(
+                centro_x, self.alto_pantalla - 160, 
+                text=f"— {cita_limpia.upper()}", 
+                fill="#FFFFFF", 
+                font=fuente_cita
+            )
             
             self.btn_read = self.canvas.create_text(centro_x - 110, self.alto_pantalla - 120, text=ui_strings.get("leer_entero", "Leer capítulo entero"), fill="#00ffcc", font=("Ubuntu", 11, "underline"))
             self.canvas.tag_bind(self.btn_read, "<Button-1>", lambda e: self.abrir_capitulo_completo())
@@ -512,6 +557,9 @@ class PresentadorBiblico:
             self.win_menu.geometry(f"320x{alto_real}")
 
     def mostrar_menu_flotante(self, event, origen_lectura=False):
+        # Si ya existe un menú abierto, lo cerramos antes de abrir uno nuevo
+        self.destruir_menu_flotante()
+
         self.win_menu = tk.Toplevel(self.root)
         self.win_menu.overrideredirect(True)
         self.win_menu.configure(bg="#1e1e1e", highlightbackground="#444", highlightthickness=1)
@@ -523,7 +571,9 @@ class PresentadorBiblico:
             self.win_menu.geometry(f"{ancho_menu}x1+{self.root.winfo_x()+40}+{self.root.winfo_y()+60}")
             
         self.mostrar_menu_principal_contenido()
-        self.win_menu.bind("<FocusOut>", lambda e: self.destruir_menu_flotante())
+        
+        # En lugar de FocusOut que rompe al abrir subventanas, cerramos con la tecla Escape
+        self.win_menu.bind("<Escape>", lambda e: self.destruir_menu_flotante())
         self.win_menu.focus_set()
 
     def ejecutar_comando_menu(self, cmd):
@@ -560,27 +610,50 @@ class PresentadorBiblico:
         self.root.geometry(f"{self.ancho_pantalla}x{self.alto_pantalla}+{x}+{y}")
 
     def mostrar_info(self):
+        self.destruir_menu_flotante()
         win_info = tk.Toplevel(self.root)
-        win_info.overrideredirect(True)
-    
-        # Aumentamos el ancho a 520 px (y el alto a 200 px por si hace salto de línea)
-        ancho_info, alto_info = 520, 200
+        win_info.overrideredirect(True)  # Evita que Pop!_OS la esconda o la haga mosaico
+        win_info.attributes('-topmost', True)  # Fuerza que se dibuje por encima de la app principal
+        
+        ancho_info, alto_info = 520, 220
         x = self.root.winfo_x() + (self.ancho_pantalla // 2) - (ancho_info // 2)
         y = self.root.winfo_y() + (self.alto_pantalla // 2) - (alto_info // 2)
         win_info.geometry(f"{ancho_info}x{alto_info}+{x}+{y}")
-        win_info.configure(bg="#1e1e1e", highlightbackground="#444", highlightthickness=1)
-    
+        win_info.configure(bg="#1e1e1e", highlightbackground="#00ffcc", highlightthickness=2)
+        
         ui_strings = DICCIONARIO_UI.get(self.idioma_actual, DICCIONARIO_UI["es"])
-        tk.Label(win_info, text=ui_strings.get("info_tit", "PRESENTADOR BÍBLICO"), bg="#1e1e1e", fg="#00ffcc", font=("Ubuntu", 12, "bold")).pack(pady=(20, 5))
-    
-        # Agregamos wraplength=480 para que envuelva el texto si es necesario
-        tk.Label(win_info, text=ui_strings.get("info_body", "Información de la app"), bg="#1e1e1e", fg="white", font=("Ubuntu", 11), justify="center", wraplength=480).pack(pady=10)
-    
-        tk.Button(win_info, text=ui_strings.get("btn_aceptar", "Aceptar"), bg="#333333", fg="white", font=("Ubuntu", 10, "bold"), activebackground="#444", activeforeground="white", bd=0, relief="flat", padx=25, pady=6, cursor="hand2", command=win_info.destroy).pack(pady=(5, 10))
+        
+        tk.Label(
+            win_info, 
+            text=ui_strings.get("info_tit", "PRESENTADOR BÍBLICO"), 
+            bg="#1e1e1e", fg="#00ffcc", 
+            font=("Merriweather", 12, "bold")
+        ).pack(pady=(20, 5))
+        
+        tk.Label(
+            win_info, 
+            text=ui_strings.get("info_body", "Información de la app"), 
+            bg="#1e1e1e", fg="white", 
+            font=("Merriweather", 10), 
+            justify="center", wraplength=480
+        ).pack(pady=10)
+        
+        tk.Button(
+            win_info, 
+            text=ui_strings.get("btn_aceptar", "Aceptar"), 
+            bg="#333333", fg="white", 
+            font=("Merriweather", 10, "bold"), 
+            activebackground="#444", activeforeground="white", 
+            bd=0, relief="flat", padx=25, pady=6, cursor="hand2", 
+            command=win_info.destroy
+        ).pack(pady=(5, 10))
 
     def mostrar_sabias_que(self):
+        self.destruir_menu_flotante()
         win_sabias = tk.Toplevel(self.root)
-        win_sabias.overrideredirect(True)
+        win_sabias.overrideredirect(True)  # Evita que Pop!_OS la esconda
+        win_sabias.attributes('-topmost', True)  # Fuerza que se dibuje por encima
+        
         ancho_info, alto_info = 580, 430
         x = self.root.winfo_x() + (self.ancho_pantalla // 2) - (ancho_info // 2)
         y = self.root.winfo_y() + (self.alto_pantalla // 2) - (alto_info // 2)
@@ -588,9 +661,31 @@ class PresentadorBiblico:
         win_sabias.configure(bg="#1e1e1e", highlightbackground="#f4d03f", highlightthickness=2)
         
         ui_strings = DICCIONARIO_UI.get(self.idioma_actual, DICCIONARIO_UI["es"])
-        tk.Label(win_sabias, text=ui_strings.get("sabias_que_tit", "💡 ¿SABÍAS QUE...?"), bg="#1e1e1e", fg="#f4d03f", font=("Ubuntu", 14, "bold")).pack(pady=(20, 10))
-        tk.Label(win_sabias, text=ui_strings.get("sabias_que_body", ""), bg="#1e1e1e", fg="white", font=("Ubuntu", 11), justify="left", wraplength=500).pack(padx=20, pady=10)
-        tk.Button(win_sabias, text=ui_strings.get("btn_aceptar", "Aceptar"), bg="#f4d03f", fg="black", font=("Ubuntu", 10, "bold"), activebackground="#e5c100", activeforeground="black", bd=0, relief="flat", padx=25, pady=6, cursor="hand2", command=win_sabias.destroy).pack(pady=(10, 10))
+        
+        tk.Label(
+            win_sabias, 
+            text=ui_strings.get("sabias_que_tit", "💡 ¿SABÍAS QUE...?"), 
+            bg="#1e1e1e", fg="#f4d03f", 
+            font=("Merriweather", 14, "bold")
+        ).pack(pady=(20, 10))
+        
+        tk.Label(
+            win_sabias, 
+            text=ui_strings.get("sabias_que_body", ""), 
+            bg="#1e1e1e", fg="white", 
+            font=("Merriweather", 10), 
+            justify="left", wraplength=500
+        ).pack(padx=20, pady=10)
+        
+        tk.Button(
+            win_sabias, 
+            text=ui_strings.get("btn_aceptar", "Aceptar"), 
+            bg="#f4d03f", fg="black", 
+            font=("Merriweather", 10, "bold"), 
+            activebackground="#e5c100", activeforeground="black", 
+            bd=0, relief="flat", padx=25, pady=6, cursor="hand2", 
+            command=win_sabias.destroy
+        ).pack(pady=(10, 10))
 
     def alternar_musica(self):
         if self.audio_active: self.detener_musica()
